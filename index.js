@@ -29,7 +29,8 @@ const isValidPokemon = (pokemon) => {
   return true;
 };
 
-const levelUpTraining = (pokemon) => {};
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const levelUpTraining = (pokemon) => async (levels) => {};
 
 console.log(`Valid ${pikachu.name}:`, isValidPokemon(pikachu));
 console.log(`Valid ${totodile.name}:`, isValidPokemon(totodile));
