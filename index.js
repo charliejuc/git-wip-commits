@@ -42,7 +42,7 @@ const levelUpTraining = (pokemon) => {
     const pokemonToLevelUp = _pokemonLeveledUp || pokemon;
 
     if (remainingLevels <= 0) {
-      return _pokemonLeveledUp;
+      return pokemonToLevelUp;
     }
 
     const msToLevelUp = 300 * pokemon.level;
@@ -52,11 +52,12 @@ const levelUpTraining = (pokemon) => {
     const pokemonLeveledUp = {
       ...pokemonToLevelUp,
       level: newLevel,
+      health: pokemonToLevelUp.health + newLevel,
       attack: pokemonToLevelUp.attack + newLevel,
       defense: pokemonToLevelUp.defense + newLevel,
     };
 
-    return levelUpTraining(levels, pokemonLeveledUp, remainingLevels - 1);
+    return _levelUpTraining(levels, pokemonLeveledUp, remainingLevels - 1);
   };
 
   return _levelUpTraining;
@@ -64,3 +65,16 @@ const levelUpTraining = (pokemon) => {
 
 console.log(`Valid ${pikachu.name}:`, isValidPokemon(pikachu));
 console.log(`Valid ${totodile.name}:`, isValidPokemon(totodile));
+
+(async () => {
+  const levels = 3;
+  const pikachuLeveledUp = await levelUpTraining(pikachu)(levels);
+
+  console.log({ pikachu });
+  console.log({ pikachuLeveledUp });
+
+  console.log(
+    `Valid ${pikachuLeveledUp.name} leveled up:`,
+    isValidPokemon(pikachuLeveledUp)
+  );
+})();
