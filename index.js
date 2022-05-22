@@ -29,5 +29,7 @@ const isValidPokemon = (pokemon) => {
   return true;
 };
 
+const levelUpTraining = (pokemon) => {};
+
 console.log(`Valid ${pikachu.name}:`, isValidPokemon(pikachu));
 console.log(`Valid ${totodile.name}:`, isValidPokemon(totodile));
